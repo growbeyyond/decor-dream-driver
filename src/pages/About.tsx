@@ -35,7 +35,7 @@ const About = () => {
           
           <div className="max-w-3xl mx-auto text-center mb-16">
             <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-              Petals of Tradition was born from a deep appreciation for South Indian cultural celebrations and the timeless beauty of floral decoration.
+              Sainath Events was born from a deep appreciation for South Indian cultural celebrations and the timeless beauty of floral decoration.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               With over a decade of experience, our team has decorated hundreds of weddings, temple events, and celebrations, bringing joy and beauty to every occasion. We combine traditional techniques with modern design sensibilities to create unforgettable experiences.

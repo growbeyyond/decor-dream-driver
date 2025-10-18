@@ -39,7 +39,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="text-2xl font-display font-bold gradient-text">
-              Petals of Tradition
+              Sainath Events
             </div>
           </Link>
 

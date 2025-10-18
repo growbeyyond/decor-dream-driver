@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="text-xl font-display font-bold gradient-text mb-4">
-              Petals of Tradition
+              Sainath Events
             </h3>
             <p className="text-muted-foreground mb-4">
               Where every petal speaks emotion. Premium South Indian floral decoration for weddings and celebrations.
@@ -62,7 +62,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <Mail className="h-5 w-5 text-primary mt-0.5" />
-                <span>hello@petalsoftradition.com</span>
+                <span>hello@sainathevents.com</span>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="h-5 w-5 text-primary mt-0.5" />
@@ -73,7 +73,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground text-sm">
-          <p>© {new Date().getFullYear()} Petals of Tradition. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Sainath Events. All rights reserved.</p>
         </div>
       </div>
     </footer>
