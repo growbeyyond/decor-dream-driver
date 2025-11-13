@@ -89,6 +89,17 @@ const Footer = () => {
 
         <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground text-sm">
           <p>© {new Date().getFullYear()} Sainath Events. All rights reserved.</p>
+          <p className="mt-2">
+            Developed by{" "}
+            <a 
+              href="https://www.growbeyyond.in" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              Grow Beyyond
+            </a>
+          </p>
         </div>
       </div>
     </footer>
