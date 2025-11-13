@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 
 const FloatingCTA = () => {
   const handleWhatsApp = () => {
-    window.open("https://wa.me/919876543210?text=Hi! I'd like to know more about your floral decoration services.", "_blank");
+    window.open("https://wa.me/916300110329?text=Hi! I'd like to know more about your floral decoration services.", "_blank");
   };
 
   const handleCall = () => {
-    window.location.href = "tel:+919876543210";
+    window.location.href = "tel:+916300110329";
   };
 
   return (
