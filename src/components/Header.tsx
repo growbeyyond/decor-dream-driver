@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import logo from "@/assets/sainath-logo.png";
@@ -8,6 +8,15 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleCall = () => {
+    window.location.href = "tel:+916300110329";
+  };
+
+  const handleGetQuote = () => {
+    navigate("/contact");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,11 +73,11 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-3">
-            <Button variant="outline" size="sm" className="gap-2">
+            <Button variant="outline" size="sm" className="gap-2" onClick={handleCall}>
               <Phone className="h-4 w-4" />
               Call Us
             </Button>
-            <Button size="sm" className="gap-2">
+            <Button size="sm" className="gap-2" onClick={handleGetQuote}>
               <MessageCircle className="h-4 w-4" />
               Get Quote
             </Button>
@@ -106,11 +115,11 @@ const Header = () => {
                 </Link>
               ))}
               <div className="flex flex-col space-y-2 pt-4">
-                <Button variant="outline" size="sm" className="gap-2 w-full">
+                <Button variant="outline" size="sm" className="gap-2 w-full" onClick={handleCall}>
                   <Phone className="h-4 w-4" />
                   Call Us
                 </Button>
-                <Button size="sm" className="gap-2 w-full">
+                <Button size="sm" className="gap-2 w-full" onClick={handleGetQuote}>
                   <MessageCircle className="h-4 w-4" />
                   Get Quote
                 </Button>

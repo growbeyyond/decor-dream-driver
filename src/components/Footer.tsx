@@ -15,13 +15,28 @@ const Footer = () => {
               Where every petal speaks emotion. Premium South Indian floral decoration for weddings and celebrations.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors">
+              <a 
+                href="https://www.instagram.com/sainathh_eventss_01/?hl=en" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+              >
                 <Instagram className="h-5 w-5 text-primary" />
               </a>
-              <a href="#" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors">
+              <a 
+                href="https://www.facebook.com/sainathevents" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+              >
                 <Facebook className="h-5 w-5 text-primary" />
               </a>
-              <a href="#" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors">
+              <a 
+                href="https://www.youtube.com/@sainathevents-i4p" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+              >
                 <Youtube className="h-5 w-5 text-primary" />
               </a>
             </div>
