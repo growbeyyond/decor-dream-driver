@@ -161,7 +161,7 @@ All colors MUST be HSL.
   }
   
   .hover-lift:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.02);
     box-shadow: var(--shadow-medium);
   }
   
@@ -169,6 +169,7 @@ All colors MUST be HSL.
   .service-card {
     position: relative;
     overflow: hidden;
+    transition: var(--transition-smooth);
   }
   
   .service-card::before {
@@ -182,7 +183,28 @@ All colors MUST be HSL.
     transition: var(--transition-smooth);
   }
   
+  .service-card:hover {
+    transform: translateY(-2px);
+  }
+  
   .service-card:hover::before {
     left: 0;
+  }
+  
+  /* Skeleton Loader */
+  .skeleton {
+    background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--muted) / 0.5) 50%, hsl(var(--muted)) 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s linear infinite;
+  }
+  
+  /* Smooth Scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Image Loading Optimization */
+  img {
+    content-visibility: auto;
   }
 }
