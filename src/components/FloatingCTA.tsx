@@ -1,13 +1,20 @@
 import { Phone, MessageCircle, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const FloatingCTA = () => {
+  const navigate = useNavigate();
+  
   const handleWhatsApp = () => {
     window.open("https://wa.me/916300110329?text=Hi! I'd like to know more about your floral decoration services.", "_blank");
   };
 
   const handleCall = () => {
     window.location.href = "tel:+916300110329";
+  };
+  
+  const handleGetQuote = () => {
+    navigate('/contact');
   };
 
   return (
@@ -35,6 +42,7 @@ const FloatingCTA = () => {
 
       {/* Get Quote */}
       <Button
+        onClick={handleGetQuote}
         size="lg"
         className="rounded-full shadow-lg hover:scale-110 transition-transform duration-300 gap-2"
       >
