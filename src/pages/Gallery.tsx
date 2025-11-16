@@ -3,11 +3,25 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
 
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filters = ["all", "weddings", "haldi", "receptions", "temple", "corporate"];
+  
+  const galleryItems = [
+    { id: 1, category: "weddings", title: "Traditional Wedding Mandap" },
+    { id: 2, category: "haldi", title: "Haldi Ceremony Decoration" },
+    { id: 3, category: "receptions", title: "Grand Reception Stage" },
+    { id: 4, category: "temple", title: "Temple Event Decor" },
+    { id: 5, category: "corporate", title: "Corporate Event Setup" },
+    { id: 6, category: "weddings", title: "Bridal Entry Pathway" },
+  ];
+  
+  const filteredItems = activeFilter === "all" 
+    ? galleryItems 
+    : galleryItems.filter(item => item.category === activeFilter);
 
   return (
     <div className="min-h-screen">
@@ -34,13 +48,15 @@ const Gallery = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
+            {filteredItems.map((item) => (
               <div
-                key={item}
-                className="aspect-square bg-muted rounded-2xl hover-lift overflow-hidden"
+                key={item.id}
+                className="aspect-square bg-muted rounded-2xl hover-lift overflow-hidden group cursor-pointer"
               >
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                  Gallery Image {item}
+                <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground bg-gradient-to-br from-primary/10 to-secondary/10 group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
+                  <Sparkles className="h-12 w-12 mb-2 text-primary" />
+                  <p className="font-medium text-center px-4">{item.title}</p>
+                  <p className="text-xs mt-1 capitalize">{item.category}</p>
                 </div>
               </div>
             ))}

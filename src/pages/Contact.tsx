@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -6,26 +8,50 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { toast } from "sonner";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
+  phone: z.string().min(10, "Phone number must be at least 10 digits").max(15, "Phone number is too long"),
+  email: z.string().email("Invalid email address").max(255, "Email is too long"),
+  eventType: z.string().min(1, "Please select an event type"),
+  date: z.string().min(1, "Please select a date"),
+  city: z.string().min(2, "City must be at least 2 characters").max(100, "City name is too long"),
+  message: z.string().min(10, "Message must be at least 10 characters").max(1000, "Message is too long"),
+});
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    eventType: "",
-    date: "",
-    city: "",
-    message: "",
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      phone: "",
+      email: "",
+      eventType: "",
+      date: "",
+      city: "",
+      message: "",
+    },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log("Form submitted:", values);
+    
+    // Create WhatsApp message with form data
+    const message = encodeURIComponent(
+      `Hi! I'd like to get in touch:\n\nName: ${values.name}\nPhone: ${values.phone}\nEmail: ${values.email}\nEvent Type: ${values.eventType}\nDate: ${values.date}\nCity: ${values.city}\nMessage: ${values.message}`
+    );
+    
+    // Open WhatsApp with pre-filled message
+    window.open(`https://wa.me/916300110329?text=${message}`, "_blank");
+    
     toast.success("Message sent successfully!", {
       description: "We'll get back to you within 24 hours.",
     });
-    setFormData({ name: "", phone: "", email: "", eventType: "", date: "", city: "", message: "" });
+    
+    form.reset();
   };
 
   return (
@@ -43,65 +69,118 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="bg-card rounded-2xl p-8 border border-border">
               <h2 className="text-2xl font-display font-semibold mb-6">Send Us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <Input
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                />
-                <Input
-                  type="tel"
-                  placeholder="Phone Number"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  required
-                />
-                <Input
-                  type="email"
-                  placeholder="Email Address"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                />
-                <Select
-                  value={formData.eventType}
-                  onValueChange={(value) => setFormData({ ...formData, eventType: value })}
-                  required
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Event Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="wedding">Wedding</SelectItem>
-                    <SelectItem value="haldi">Haldi Ceremony</SelectItem>
-                    <SelectItem value="reception">Reception</SelectItem>
-                    <SelectItem value="temple">Temple Event</SelectItem>
-                    <SelectItem value="corporate">Corporate Event</SelectItem>
-                    <SelectItem value="birthday">Birthday</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Input
-                  type="date"
-                  value={formData.date}
-                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                  required
-                />
-                <Input
-                  placeholder="City"
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  required
-                />
-                <Textarea
-                  placeholder="Tell us about your event..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={4}
-                  required
-                />
-                <Button type="submit" className="w-full">Send Message</Button>
-              </form>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder="Your Name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input type="tel" placeholder="Phone Number" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input type="email" placeholder="Email Address" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="eventType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Event Type" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="wedding">Wedding</SelectItem>
+                            <SelectItem value="haldi">Haldi Ceremony</SelectItem>
+                            <SelectItem value="reception">Reception</SelectItem>
+                            <SelectItem value="temple">Temple Event</SelectItem>
+                            <SelectItem value="corporate">Corporate Event</SelectItem>
+                            <SelectItem value="birthday">Birthday</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="date"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input type="date" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="city"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder="City" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Textarea 
+                            placeholder="Tell us about your event..." 
+                            rows={4}
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <Button type="submit" className="w-full">Send Message</Button>
+                </form>
+              </Form>
             </div>
 
             {/* Contact Info */}

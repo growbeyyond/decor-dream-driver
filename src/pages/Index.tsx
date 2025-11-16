@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -8,6 +9,7 @@ import { Sparkles, Users, Award, Heart, Flower2, Church, Building2 } from "lucid
 import heroImage from "@/assets/hero-mandap.jpg";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [beforeAfter, setBeforeAfter] = useState(50);
 
   const services = [
@@ -61,11 +63,11 @@ const Index = () => {
                 South Indian floral artistry for weddings, haldi, receptions & cultural events. Rooted in tradition, designed for today.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="gap-2">
+                <Button size="lg" className="gap-2" onClick={() => navigate('/contact')}>
                   <Sparkles className="h-5 w-5" />
                   Get My Floral Plan
                 </Button>
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" onClick={() => navigate('/gallery')}>
                   View Gallery
                 </Button>
               </div>
