@@ -3,20 +3,45 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
+
+// Import all gallery images
+import heroImage from "@/assets/hero-mandap.jpg";
+import anniversaryDecor from "@/assets/gallery/anniversary-decor.jpeg";
+import krishnaDecor from "@/assets/gallery/krishna-decor.jpeg";
+import jungleBirthday from "@/assets/gallery/jungle-birthday.jpeg";
+import teddyBirthday from "@/assets/gallery/teddy-birthday.jpeg";
+import stageDecor from "@/assets/gallery/stage-decor.jpeg";
+import butterflyDecor from "@/assets/gallery/butterfly-decor.jpeg";
+import blueBirthday from "@/assets/gallery/blue-birthday.jpeg";
+import balloonDecor from "@/assets/gallery/balloon-decor.jpeg";
+import pinkBirthday from "@/assets/gallery/pink-birthday.jpeg";
+import outdoorBirthday from "@/assets/gallery/outdoor-birthday.jpeg";
+import carsBirthday from "@/assets/gallery/cars-birthday.jpeg";
+import blackGoldBirthday from "@/assets/gallery/black-gold-birthday.jpeg";
+import whiteGoldBirthday from "@/assets/gallery/white-gold-birthday.jpeg";
+import samyukthaEvent from "@/assets/gallery/samyuktha-event.jpeg";
 
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState("all");
 
-  const filters = ["all", "weddings", "haldi", "receptions", "temple", "corporate"];
+  const filters = ["all", "birthday", "wedding", "religious", "corporate"];
   
   const galleryItems = [
-    { id: 1, category: "weddings", title: "Traditional Wedding Mandap" },
-    { id: 2, category: "haldi", title: "Haldi Ceremony Decoration" },
-    { id: 3, category: "receptions", title: "Grand Reception Stage" },
-    { id: 4, category: "temple", title: "Temple Event Decor" },
-    { id: 5, category: "corporate", title: "Corporate Event Setup" },
-    { id: 6, category: "weddings", title: "Bridal Entry Pathway" },
+    { id: 1, category: "wedding", title: "Traditional Wedding Mandap", image: heroImage },
+    { id: 2, category: "birthday", title: "Anniversary Celebration", image: anniversaryDecor },
+    { id: 3, category: "religious", title: "Krishna Themed Decoration", image: krishnaDecor },
+    { id: 4, category: "birthday", title: "Jungle Theme Birthday", image: jungleBirthday },
+    { id: 5, category: "birthday", title: "Teddy Bear Theme", image: teddyBirthday },
+    { id: 6, category: "birthday", title: "Stage Decoration", image: stageDecor },
+    { id: 7, category: "birthday", title: "Butterfly Garden Theme", image: butterflyDecor },
+    { id: 8, category: "birthday", title: "Blue Theme Birthday", image: blueBirthday },
+    { id: 9, category: "birthday", title: "Balloon Arch Setup", image: balloonDecor },
+    { id: 10, category: "birthday", title: "Pink Theme Celebration", image: pinkBirthday },
+    { id: 11, category: "birthday", title: "Outdoor Birthday Event", image: outdoorBirthday },
+    { id: 12, category: "birthday", title: "Cars Theme First Birthday", image: carsBirthday },
+    { id: 13, category: "birthday", title: "Black & Gold Elegant Setup", image: blackGoldBirthday },
+    { id: 14, category: "birthday", title: "White & Gold Theme", image: whiteGoldBirthday },
+    { id: 15, category: "birthday", title: "Grand First Birthday", image: samyukthaEvent },
   ];
   
   const filteredItems = activeFilter === "all" 
@@ -51,12 +76,19 @@ const Gallery = () => {
             {filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="aspect-square bg-muted rounded-2xl hover-lift overflow-hidden group cursor-pointer"
+                className="aspect-square bg-muted rounded-2xl hover-lift overflow-hidden group cursor-pointer relative"
               >
-                <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground bg-gradient-to-br from-primary/10 to-secondary/10 group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
-                  <Sparkles className="h-12 w-12 mb-2 text-primary" />
-                  <p className="font-medium text-center px-4">{item.title}</p>
-                  <p className="text-xs mt-1 capitalize">{item.category}</p>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <p className="font-display font-semibold text-lg">{item.title}</p>
+                    <p className="text-sm capitalize text-white/80">{item.category}</p>
+                  </div>
                 </div>
               </div>
             ))}
