@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import QuickQuoteForm from "@/components/QuickQuoteForm";
 import { Button } from "@/components/ui/button";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Sparkles, Users, Award, Heart, Flower2, Church, Building2 } from "lucide-react";
 import heroImage from "@/assets/hero-mandap.jpg";
+import anniversaryDecor from "@/assets/gallery/anniversary-decor.jpeg";
+import krishnaDecor from "@/assets/gallery/krishna-decor.jpeg";
+import jungleBirthday from "@/assets/gallery/jungle-birthday.jpeg";
+import teddyBirthday from "@/assets/gallery/teddy-birthday.jpeg";
+import stageDecor from "@/assets/gallery/stage-decor.jpeg";
+import butterflyDecor from "@/assets/gallery/butterfly-decor.jpeg";
+import blueBirthday from "@/assets/gallery/blue-birthday.jpeg";
+import balloonDecor from "@/assets/gallery/balloon-decor.jpeg";
+import pinkBirthday from "@/assets/gallery/pink-birthday.jpeg";
+import outdoorBirthday from "@/assets/gallery/outdoor-birthday.jpeg";
+import Autoplay from "embla-carousel-autoplay";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -81,20 +93,56 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Hero Image Section */}
+      {/* Hero Image Carousel Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="rounded-3xl overflow-hidden shadow-2xl">
-            <div className="bloom-in">
-              <img 
-                src={heroImage} 
-                alt="Beautiful South Indian mandap decoration with marigold and jasmine flowers" 
-                className="w-full h-[500px] object-cover"
-                loading="eager"
-                fetchPriority="high"
-              />
-            </div>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-2">
+              Our <span className="gradient-text">Recent Work</span>
+            </h2>
+            <p className="text-muted-foreground">Stunning decorations from our latest events</p>
           </div>
+          <Carousel
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {[
+                { src: heroImage, alt: "Beautiful South Indian mandap decoration" },
+                { src: anniversaryDecor, alt: "Anniversary balloon decoration" },
+                { src: krishnaDecor, alt: "Traditional Krishna themed floral decoration" },
+                { src: jungleBirthday, alt: "Jungle themed birthday decoration" },
+                { src: teddyBirthday, alt: "Teddy bear themed birthday party" },
+                { src: stageDecor, alt: "Stage balloon decoration" },
+                { src: butterflyDecor, alt: "Butterfly themed outdoor decoration" },
+                { src: blueBirthday, alt: "Blue themed birthday party" },
+                { src: balloonDecor, alt: "Colorful balloon arch decoration" },
+                { src: pinkBirthday, alt: "Pink themed birthday celebration" },
+                { src: outdoorBirthday, alt: "Outdoor birthday event decoration" },
+              ].map((image, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                  <div className="rounded-2xl overflow-hidden shadow-xl group">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading={index < 3 ? "eager" : "lazy"}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
 
