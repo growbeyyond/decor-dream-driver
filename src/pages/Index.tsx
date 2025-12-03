@@ -18,6 +18,10 @@ import blueBirthday from "@/assets/gallery/blue-birthday.jpeg";
 import balloonDecor from "@/assets/gallery/balloon-decor.jpeg";
 import pinkBirthday from "@/assets/gallery/pink-birthday.jpeg";
 import outdoorBirthday from "@/assets/gallery/outdoor-birthday.jpeg";
+import carsBirthday from "@/assets/gallery/cars-birthday.jpeg";
+import blackGoldBirthday from "@/assets/gallery/black-gold-birthday.jpeg";
+import whiteGoldBirthday from "@/assets/gallery/white-gold-birthday.jpeg";
+import samyukthaEvent from "@/assets/gallery/samyuktha-event.jpeg";
 import Autoplay from "embla-carousel-autoplay";
 
 const Index = () => {
@@ -129,6 +133,10 @@ const Index = () => {
                 { src: balloonDecor, alt: "Colorful balloon arch decoration" },
                 { src: pinkBirthday, alt: "Pink themed birthday celebration" },
                 { src: outdoorBirthday, alt: "Outdoor birthday event decoration" },
+                { src: carsBirthday, alt: "Cars themed first birthday decoration" },
+                { src: blackGoldBirthday, alt: "Elegant black and gold birthday setup" },
+                { src: whiteGoldBirthday, alt: "White and gold birthday celebration" },
+                { src: samyukthaEvent, alt: "Grand first birthday event decoration" },
               ].map((image, index) => (
                 <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                   <div className="rounded-2xl overflow-hidden shadow-xl group">
